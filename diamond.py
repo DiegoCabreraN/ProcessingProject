@@ -1,6 +1,8 @@
 class Diamond:
     def __init__(self, base_length, half_height, *multiplier):
         self.base_length = base_length
+        self.half_length = base_length/2
+        self.center = sin(PI/3)*self.base_length
         self.half_height = half_height
         self.y_angle = 0
         self.x_angle = 0
@@ -30,13 +32,13 @@ class Diamond:
         rotateY(self.y_angle)
         
         v = [(0,0,0), 
-             (self.base_length/2, 0, (sin(PI/3)*self.base_length)), 
-             (self.base_length/2, -self.half_height, (sin(PI/3)*self.base_length)/3), 
+             (self.half_length, 0, self.center), 
+             (self.half_length, -self.half_height, self.center/3), 
              (self.base_length, 0, 0),
-             (self.base_length/2, self.half_height, (sin(PI/3)*self.base_length)/3), 
+             (self.half_length, self.half_height, self.center/3), 
             ]
         
-        translate(-self.base_length/2,0, -(sin(PI/3)*self.base_length)/3)
+        translate(-self.half_length,0, -self.center/3)
 
         diamond = createShape()
         diamond.beginShape(TRIANGLE)
